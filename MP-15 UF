@@ -22,15 +22,15 @@ public class MP15
             sort[i] = input.nextInt();
         }
         
-        for (int i = 1; i < sort.length; i++)
+        for (int k = 1; k < sort.length; k++)
         {
-            for (int j = i; j > 0; j--) 
+            for (int j = k; j > 0; j--) 
             {
-                if (array[j] < array [j - 1]) 
+                if (sort[j] < sort[j - 1]) 
                 {
-                    num = array[j];
-                    array[j] = array[j - 1];
-                    array[j - 1] = num;
+                    num = sort[j];
+                    sort[j] = sort[j - 1];
+                    sort[j - 1] = num;
                 }
             }
         }
