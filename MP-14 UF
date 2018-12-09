@@ -7,27 +7,28 @@ public class MP14 {
     public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
     
-    String line, rev="";
+    String line, rev="", mash="";
     
     System.out.println("Enter a word: ");
     line = input.nextLine();
     
     char let[] = line.toCharArray();
-    System.out.println(line.length());
-    
-    System.out.println("Reversed string is: ");
     
     for (int i = let.length-1;i>=0;i--)
     {
-        rev = rev + let[i];
+        mash = rev + let[i];
+        System.out.print(let[i]);
     }
-    System.out.println(rev.getClass());
     System.out.println();
     
-    if (rev==line)
+    if (mash==line)
         System.out.println("It's a palindrome.");
-    else
+    else if (mash != line)
         System.out.println("It's not a palindrome.");
+    else
+        System.out.println("You messed up.");
+        
+    //Gian, it keeps printing out "It's not a palindrome" even when the input actually is.
     }
     
 }
