@@ -1,0 +1,28 @@
+package mp.pkg15;
+
+import java.util.Scanner;
+
+public class MP15 {
+
+    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    
+    int num;
+    
+    System.out.print("How many number/s? ");
+    num = input.nextInt();
+    
+    int sort[] = new int[num];
+    
+    for (int i = 1;i<=num;i++)
+    {
+        System.out.print("Number "+i+": ");
+        sort[i] = input.nextInt();
+    }
+    for (int i = 0;i<=sort.length;i++)
+    {
+        System.out.print(sort[i]);
+    }
+    }           
+    
+}
