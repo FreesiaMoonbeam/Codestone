@@ -19,9 +19,9 @@ public class MP14 {
     
     for (int i = let.length-1;i>=0;i--)
     {
-        System.out.print(let[i]);
-        //Gian, this ^ array needs to be a string again so I can use it for the if function below.
+        rev = rev + let[i];
     }
+    System.out.println(rev.getClass());
     System.out.println();
     
     if (rev==line)
