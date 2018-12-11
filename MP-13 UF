@@ -6,20 +6,37 @@ public class MP13
 {
     public static void main(String[] args) 
     {
-        Scanner input = new Scanner(System.in);
-    
-        String line;
-    
-        System.out.println("Enter a sentence: ");
-        line = input.nextLine();
+		 Scanner input = new Scanner(System.in);
+		    
+	     String line;
+	    
+	     System.out.println("Enter a sentence: ");
+	     line = input.nextLine();
+	     boolean CapArgs = true;
 
-        String word[] = line.split("\\s+"); //I thought we weren't allowed to use this?
+	     char[] letters = line.toLowerCase().toCharArray();
 
-        for (int i = 0; i <= line.length(); i++) 
-        {
-            System.out.println(word[i]);
-        }
-    }    
+	     for (int i = 0; i < letters.length; i++) 
+	     {
+	    	 if(i == 0)
+	    	 {
+	    		 letters[i] = Character.toUpperCase(letters[i]); 
+	    	 }
+	    	 
+	    	 else if (!CapArgs && Character.isLetter(letters[i])) 
+		     {
+			     letters[i] = Character.toUpperCase(letters[i]);
+			     CapArgs = true;
+		     } 
+		     
+		     else if (Character.isWhitespace(letters[i]) || letters[i]=='.' || letters[i]=='\'') 
+		     { 
+		    	 CapArgs = false;
+		     }
+	     }
+	     
+	     String newline = String.valueOf(letters);
+	     System.out.println(newline);
+	}
+
 }
-//It's throwing an arrayexception. Again. I'm getting really sick of seeing that error.
-//Then don't use stuff that involves arrays XD. It's caused by a type error, or an indexing error
