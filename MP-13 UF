@@ -1,0 +1,23 @@
+package mp.pkg13;
+
+import java.util.Scanner;
+
+public class MP13 {
+
+    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    
+    String line;
+    
+    System.out.println("Enter a sentence: ");
+    line = input.nextLine();
+    
+    String word[] = line.split("\\s+");
+    
+    for (int i = 0; i <= line.length(); i++) 
+    {
+        System.out.println(word[i]);
+    }
+    }    
+}
+//It's throwing an arrayexception. Again. I'm getting really sick of seeing that error.
