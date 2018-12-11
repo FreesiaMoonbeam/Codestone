@@ -6,37 +6,48 @@ public class MP13
 {
     public static void main(String[] args) 
     {
-		 Scanner input = new Scanner(System.in);
-		    
-	     String line;
-	    
-	     System.out.println("Enter a sentence: ");
-	     line = input.nextLine();
-	     boolean CapArgs = true;
+	Scanner input = new Scanner(System.in);
 
-	     char[] letters = line.toLowerCase().toCharArray();
+     	String line;
 
-	     for (int i = 0; i < letters.length; i++) 
-	     {
-	    	 if(i == 0)
-	    	 {
-	    		 letters[i] = Character.toUpperCase(letters[i]); 
-	    	 }
-	    	 
-	    	 else if (!CapArgs && Character.isLetter(letters[i])) 
-		     {
-			     letters[i] = Character.toUpperCase(letters[i]);
-			     CapArgs = true;
-		     } 
-		     
-		     else if (Character.isWhitespace(letters[i]) || letters[i]=='.' || letters[i]=='\'') 
-		     { 
-		    	 CapArgs = false;
-		     }
-	     }
-	     
-	     String newline = String.valueOf(letters);
-	     System.out.println(newline);
+     	System.out.println("Enter a sentence: ");
+     	line = input.nextLine();
+	
+	//Creates a bool to define whether the next character is to be capitalized
+     	boolean CapArgs = true;
+
+	//Sets the string to an array of characters
+     	char[] letters = line.toLowerCase().toCharArray();
+
+	//For every character, check if it is to be capitalized based on it position relative to special characters
+     	for (int i = 0; i < letters.length; i++) 
+     	{
+		if(i == 0)
+	 	{
+			//Capitzlizes letter
+			letters[i] = Character.toUpperCase(letters[i]); 
+		}
+
+		else if (!CapArgs && Character.isLetter(letters[i])) 
+	     	{
+			//Capitalizes letter
+		     	letters[i] = Character.toUpperCase(letters[i]);
+			//Resets value of CapArgs
+		     	CapArgs = true;
+	     	} 
+
+	     	else if (Character.isWhitespace(letters[i]) || letters[i]=='.' || letters[i]=='\'') 
+	     	{ 
+			//Designates the next character to be capitalized
+		 	CapArgs = false;
+	     	}
+     	}
+
+	//Turns the array back into a string
+     	String newline = String.valueOf(letters);
+	
+	//Prints the new string
+     	System.out.println(newline);
 	}
 
 }
