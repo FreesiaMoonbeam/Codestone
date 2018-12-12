@@ -1,0 +1,54 @@
+package mybankingsystem;
+
+import java.util.Scanner;
+
+public class MyBankingSystem {
+
+    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    
+    String actname;
+    int balance[] = new int[50];
+    String custname[] = new String [50];
+    int num, i, ctr=0, custbal=0, withdrawal;
+    
+    System.out.println("Welcome to the MBS Banking System!");
+    System.out.print("Enter your nickname: ");
+    actname = input.nextLine();
+    
+    do
+    {
+        System.out.print("\nWhat is the name of the customer? \n");
+        custname[ctr]=input.nextLine();
+        System.out.println("\nWhat do you want to do today?\n");
+        System.out.print("\t1 - Deposit Money\n\t2 - Withdraw\n\t3 - Check Records\n\t0 - Exit\n");
+        num=input.nextInt();
+        
+        if (num==1)
+        {
+            System.out.print("Enter amount to deposit: ");
+            balance[ctr]=input.nextInt();
+            custbal=balance[ctr];
+            System.out.println("Transaction done. ");
+            ctr++;
+        }
+        else if (num==2)
+        {
+            System.out.print("Enter amount to withdraw: ");
+            withdrawal=input.nextInt();
+            for (i=1;i<ctr;i++)
+            {
+                balance[ctr]=custbal-withdrawal;
+            }
+            System.out.println("Remaining: "+balance[ctr]);
+        }
+        else if (num==3)
+        {
+            System.out.println("Records of"+custname[ctr]);
+            System.out.print("Balance: "+balance[ctr]);
+        }
+    }
+    while(num!=0);
+    }
+    
+}
