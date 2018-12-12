@@ -7,29 +7,26 @@ package mybankingsystem;
  * the system being open
  * 
  * Structure:
- * 	Get the name of the cashier
- * 	Get the number of the cashier
- * 	1st level while loop to measure if the same cashier is using the machine
- * 		Get the name of the customer
- * 		Get account number of customer
- * 		2nd level while loop to analyze what transaction is being done
- * 			3rd Conditional to designate:
+ * 	Get name of cashier as string
+ * 	Initialize the customer counter for the day as integer
+ * 	Initialize the array of customer names as strings
+ * 	Initialize the array of account numbers as numbers
+ * 	1st level while loop to indicate if the cashier is handling a customer
+ * 		Get the name of the customer as {array of customer names[customer counter]}
+ * 		Get account number of customer as {array of account numbers[customer counter]}
+ * 		1st level while loop to analyze transactions
+ * 			2nd Conditional to designate what transaction is being done
  * 				1. Deposit
- * 					Get account
  * 					Add deposit amount to account balance
  * 					Add transaction to the records
  * 				2. Withdrawal
- * 					Get account
  * 					Subtract withdrawal amount from account balance
  * 					Add transaction to the records
- * 		2rd Conditional to designate if the customer is done
+ * 		1st Conditional to designate if the customer is done
  * 			1. Yes
  * 				Terminate loop
  * 			2. No
  * 				Pass loop
- * 	1st level conditional to analyze 
- * 		1. 
- * 		
  */
 import java.util.Scanner;
 
