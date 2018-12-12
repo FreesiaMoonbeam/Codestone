@@ -1,60 +1,201 @@
 package mybankingsystem;
-
+/*
+ * The program should do the following: 
+ * 1. Get the name of the cashier and use it in records
+ * 2. Commit customer transactions to the account which they control
+ * 3. Display records of all transactions run during the instance of 
+ * the system being open
+ * 
+ * Structure:
+ * 	Get name of cashier as string
+ *  Initialize current cashier action as {an integer equal to 0}
+ * 	Initialize customer counter for the day as {an integer equal to 0}
+ * 	Initialize array of customer names as strings
+ * 	Initialize array of account numbers as integers
+ * 	Initialize array of account balances as floating point numbers (floats)
+ * 	1st level while loop to measure what the cashier is doing
+ * 		2nd level conditional for analyzing cashier actions
+ * 			0. Handling customers
+ * 				Get the name of the customer as {customer names[customer counter]}
+ * 				Get account number of customer as {account numbers[customer counter]}
+ * 				3rd level while loop to analyze transactions
+ * 					4th level Conditional to designate what transaction is being done
+ * 						0. Deposit
+ * 							Add deposit amount to account balance
+ * 							Add transaction to the records
+ * 						1. Withdrawal
+ * 							Subtract withdrawal amount from account balance
+ * 							Add transaction to the records
+ * 				3rd Conditional to designate if the customer is done
+ * 					0. Yes
+ * 						Set customer counter to next value {+1}
+ * 						Terminate loop
+ * 					1. No
+ * 						Pass loop
+ * 			1. Checking records
+ * 				For every customer in range 0 --> current customer (last value - 1)
+ * 					Print(customer names[customer], "with account number", account numbers[customer])
+ * 					Print("has a balance of", account balances[customer])
+ * 	1st level conditional to check what the cashier is doing next
+ * 		0. Customer handling
+ * 			Set current cashier action as 0
+ * 			Pass loop 
+ * 		1. Checking records
+ * 			Set current cashier action as 1
+ * 			Pass loop
+ * 		2. Done for the day
+ * 			Print goodbye message
+ * 			Terminate loop
+ */
 import java.util.Scanner;
 
 public class MyBankingSystem {
 
-    public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
-    
-    //code initializations
-    String actname;
-    int balance[] = new int[50];
-    String custname[] = new String [50];
-    int num, i, ctr=0, custbal=0, withdrawal;
-    
-    //greetings and cashier name
-    System.out.println("Welcome to the MBS Banking System!");
-    System.out.print("Enter your nickname: ");
-    actname = input.nextLine();
-    
-    //this should repeat until I press '0'
-    do
-    {
-        System.out.print("\nWhat is the name of the customer? \n");
-        custname[ctr]=input.nextLine();
-        //i need to store names in an array so I can call them back in 'check records'
-        System.out.println("\nWhat do you want to do today?\n");
-        System.out.print("\t1 - Deposit Money\n\t2 - Withdraw\n\t3 - Check Records\n\t0 - Exit\n");
-        num=input.nextInt();
-        
-        if (num==1)//the deposit option
-        {
-            System.out.print("Enter amount to deposit: ");
-            balance[ctr]=input.nextInt();
-            custbal=balance[ctr];
-            System.out.println("Transaction done. ");
-            ctr++;
-        }
-        else if (num==2)//the withdraw option.for some reason this doesnt work
-        {
-            System.out.print("Enter amount to withdraw: ");
-            withdrawal=input.nextInt();
-            for (i=1;i<ctr;i++)
-            {
-                balance[ctr]=custbal-withdrawal;
-            }
-            System.out.println("Remaining: "+balance[ctr]);
-        }
-        else if (num==3)//the check records option. I need to improve this
-        {
-            System.out.println("Records of"+custname[ctr]);
-            System.out.print("Balance: "+balance[ctr]);
-        }
-        else if (num==0)//the exit option
-        System.exit(0);
-    }
-    while(num!=0);
-    }
-    
+    public static void main(String[] args) 
+	{
+		int CurrentCashierAction = 0, CustomerCounter = 0, CurrentTransaction;
+		float FunctionValue = 0;
+		int CustomerIsDone = 1;
+		int TakingNewCustomers = 1;
+		char CustomerInputTake = 'a';
+		int AccountNumbers[] = new int[50];
+		float AccountBalances[] = new float[50];
+		String CustomerNames[] = new String[50]; 
+	    Scanner input = new Scanner(System.in);
+	    
+	    System.out.print("Enter your name: \n");
+	    String CashierName = input.nextLine();
+	    
+	    while (CurrentCashierAction < 2)
+	    {
+	    	if (CurrentCashierAction == 0)
+	    	{
+	    		while(TakingNewCustomers == 1)
+	    		{
+	    			CustomerIsDone = 1;
+	    			System.out.print("Enter customer name: \n");
+	    			CustomerNames[CustomerCounter] = input.nextLine();
+	    			
+	    			System.out.print("Enter account number: \n");
+	    			AccountNumbers[CustomerCounter] = input.nextInt();
+	    		 
+	    			while(CustomerIsDone == 1)
+	    			{
+	    				System.out.print("What would the customer like to do?:\n\n");
+	    				System.out.print("0. Deposit \n");
+	    				System.out.print("1. Withdraw\n");
+	    				System.out.print("2. Loan\n");
+		    			CurrentTransaction = input.nextInt();
+		    		 
+		    		 
+		    			if (CurrentTransaction == 0)
+		    		 	{
+		    		 		System.out.print("How much money would you like to deposit\n");
+		    		 		FunctionValue = input.nextFloat();
+		    		 		AccountBalances[CustomerCounter] = AccountBalances[CustomerCounter] + FunctionValue;
+		    		 		System.out.print("Current balance is: " + AccountBalances[CustomerCounter] + "\n");
+		    		 	}
+		    		 	
+		    		 	else if (CurrentTransaction == 1)
+		    		 	{
+		    		 		System.out.print("How much money would you like to withdraw\n");
+		    		 		FunctionValue = input.nextFloat();
+		    		 		
+		    		 		if(AccountBalances[CustomerCounter] >= FunctionValue)
+		    		 		{
+		    		 			AccountBalances[CustomerCounter] = AccountBalances[CustomerCounter] - FunctionValue;
+		    		 			System.out.print("Current balance is: " + AccountBalances[CustomerCounter] + "\n");
+		    		 		}
+		    		 		
+		    		 		else
+		    		 		{
+		    		 			System.out.print("Unable to complete desired withdrawal amount\n");
+		    		 			System.out.print("Consider a loan of " + (FunctionValue - AccountBalances[CustomerCounter]) + "\n");
+		    		 			AccountBalances[CustomerCounter] = 0;
+		    		 			System.out.print("Current balance is: " + AccountBalances[CustomerCounter] + "\n");
+		    		 		}
+		    		 	}
+		    		 	
+		    		 	else if (CurrentTransaction == 2)
+		    		 	{
+		    		 		System.out.print("How much money would you like to loan\n");
+		    		 		FunctionValue = input.nextFloat();
+		    		 		AccountBalances[CustomerCounter] = AccountBalances[CustomerCounter] - FunctionValue;
+		    		 		System.out.print("Current balance is: " + AccountBalances[CustomerCounter] + "\n");
+		    		 	}
+		    		 	
+		    		 	System.out.print("Is the customer done (y/n) \n");
+		    		 	input.nextLine();
+		    		 	CustomerInputTake = input.nextLine().charAt(0);
+		    		 
+		    		 	if (CustomerInputTake == 'y')
+		    		 	{
+		    		 		CustomerCounter = CustomerCounter + 1;
+		    		 		CustomerIsDone = 0;
+		    		 	}
+		    		 
+		    		 	else
+		    		 	{
+		    		 		CustomerIsDone = 1;
+		    		 	}
+		    		 }
+	    			
+	    			System.out.print("Take the next customer? (y/n) \n");
+	    			CustomerInputTake = input.nextLine().charAt(0);
+	    			
+	    			if (CustomerInputTake == 'y')
+	    		 	{
+	    				TakingNewCustomers = 1;
+	    		 	}
+	    		 
+	    		 	else
+	    		 	{
+	    		 		TakingNewCustomers = 0;
+	    		 	}
+	    		}
+	    	
+	    		 System.out.print("What would you like to do now?\n\n");
+	    		 System.out.print("0. Handle Next Customer \n");
+	    		 System.out.print("1. Check Transaction Records\n");
+	    		 System.out.print("2. Clock out\n");
+	    		 
+	    		 CurrentCashierAction = input.nextInt();
+	    	}
+	    	
+	    	else if (CurrentCashierAction == 1)
+	    	{
+	    		for(int customer = 0; customer <= CustomerCounter; customer++)
+	    		{
+	    			System.out.print("\nSir/Madame: " + CustomerNames[customer] + 
+	    					"\nWith account number: " + AccountNumbers[customer] + "\n");
+	    			
+	    			if(AccountBalances[customer] < 0)
+	    			{
+	    				System.out.print("Has a loan of: " + AccountBalances[customer]);
+	    			}
+	    			
+	    			else if(AccountBalances[customer] > 0)
+	    			{
+	    				System.out.print("Has a balance of: " + AccountBalances[customer]);
+	    			}
+	    			
+	    			else
+	    			{
+	    				System.out.print("Has no outstanding balance or pending loans.");
+	    			}
+	    		}
+	    		
+	    		System.out.print("\nWhat would you like to do now?\n\n");
+	    		System.out.print("0. Handle Next Customer \n");
+	    		System.out.print("1. Check Transaction Records\n");
+	    		System.out.print("2. Clock out\n");
+	    		
+	    		CurrentCashierAction = input.nextInt();
+	    	}
+	    }
+	    
+	    System.out.print("Thank you for your hard work, " + CashierName + "! \n");
+	    System.out.print("See you tomorrow!");
+	    input.close();
+	}
 }
