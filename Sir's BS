@@ -1,0 +1,61 @@
+package bankingsystemsird;
+
+import java.util.Scanner;
+
+public class BankingSystemSirD {
+
+    public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    
+    String word;
+    int [] t=new int[100];
+    int ch, ctr=1,i,h=0,b=0;
+    
+    System.out.print("Enter Account Name: ");
+    word=input.nextLine();
+    System.out.print("Enter Account Number: ");
+    int num = input.nextInt();
+    System.out.print("Good day, "+word+"!");
+    System.out.print("Account number: "+num+"");
+    
+    do
+    {
+        System.out.print("\n\n\nBANK BUDS INVENTORY SYSTEM\nWhat Would You Like To Do: \n\n\t1 - Deposit Money\n\t2 - Withdraw\n\t3-Check Balance\n");
+        ch=input.nextInt();
+        if (ch==1)
+        {
+            System.out.println("\nDeposit Money");
+            System.out.print("Enter amount to deposit: ");
+            t[ctr]=input.nextInt();
+            b=t[ctr];
+            System.out.println("Thank you for trusting Bank Buds!");
+            ctr++;
+        }
+        else if (ch==2)
+        {
+            System.out.print("\nWithdraw\n");
+            System.out.print("Enter amount to withdraw: ");
+            h=input.nextInt();
+            for (i=1;i<ctr;i++)
+            {
+                t[ctr]=b-h;
+            }
+            System.out.println("Remaining Balance: "+t[ctr]);
+            System.out.println("Thank you for trusting Bank Buds!");
+        }
+        else if(ch==3)
+        {
+            System.out.print("\nCheck Balance\n");
+            System.out.print("Remaining Balance: ");
+            for(i=1;i<ctr;i++)
+                if (b==t[i])
+                    System.out.println(t[ctr]);
+        System.out.println("Thank you for trusting Bank Buds!");
+        }
+        else if (ch==0)
+            System.exit(0);       
+    }
+    while (ch!=0);
+    }
+    
+}
