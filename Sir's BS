@@ -1,42 +1,73 @@
+/*
+The code here is an example of a customer (front-end) banking system
+*/
 package bankingsystemsird;
 
+//Imports the scanner module to take inputs
 import java.util.Scanner;
 
-public class BankingSystemSirD {
+//Defines new class
+public class BankingSystemSirD 
+{
 
-    public static void main(String[] args) {
+    //Defines new main fucntion
+    public static void main(String[] args) 
+    {
+    //Opens input stream
     Scanner input = new Scanner(System.in);
     
+    //Defines new string
     String word;
-    int [] t=new int[100];
-    int ch, ctr=1,i,h=0,b=0;
+    //Defines new integer array
+    int [] t = new int[100];
     
+    //Defines 2 dynamic integers and 3 static integers
+    int ch, i, h = 0, b = 0, ctr = 1;
+    
+    //User prompts to give input
     System.out.print("Enter Account Name: ");
-    word=input.nextLine();
+    word = input.nextLine();
     System.out.print("Enter Account Number: ");
     int num = input.nextInt();
-    System.out.print("Good day, "+word+"!");
-    System.out.print("Account number: "+num+"");
+    System.out.print("Good day, " + word + "!");
+    System.out.print("Account number: " + num + "");
     
+    //Do the following code...
     do
     {
+        //Prompt for action
         System.out.print("\n\n\nBANK BUDS INVENTORY SYSTEM\nWhat Would You Like To Do: \n\n\t1 - Deposit Money\n\t2 - Withdraw\n\t3-Check Balance\n");
-        ch=input.nextInt();
+        //Store input
+        ch = input.nextInt();
+        
+        //If input is 1, deposit
         if (ch==1)
         {
+            //Prompt for deposit amount
             System.out.println("\nDeposit Money");
             System.out.print("Enter amount to deposit: ");
-            t[ctr]=input.nextInt();
-            b=t[ctr];
+            
+            //Take deposit amounts and designate it to the transaction via a control integer
+            t[ctr] = input.nextInt();
+            b = t[ctr];
+            
+            //Output prompt
             System.out.println("Thank you for trusting Bank Buds!");
+            
+            //Shift control integer
             ctr++;
         }
+        
+        //Otherwise if input is 2, withdraw
         else if (ch==2)
         {
+            //Prompt for deposit amount
             System.out.print("\nWithdraw\n");
             System.out.print("Enter amount to withdraw: ");
-            h=input.nextInt();
-            for (i=1;i<ctr;i++)
+            
+            h = input.nextInt();
+            
+            for (i = 1; i < ctr;i++)
             {
                 t[ctr]=b-h;
             }
