@@ -8,25 +8,44 @@ package mybankingsystem;
  * 
  * Structure:
  * 	Get name of cashier as string
- * 	Initialize the customer counter for the day as integer
- * 	Initialize the array of customer names as strings
- * 	Initialize the array of account numbers as numbers
- * 	1st level while loop to indicate if the cashier is handling a customer
- * 		Get the name of the customer as {array of customer names[customer counter]}
- * 		Get account number of customer as {array of account numbers[customer counter]}
- * 		1st level while loop to analyze transactions
- * 			2nd Conditional to designate what transaction is being done
- * 				1. Deposit
- * 					Add deposit amount to account balance
- * 					Add transaction to the records
- * 				2. Withdrawal
- * 					Subtract withdrawal amount from account balance
- * 					Add transaction to the records
- * 		1st Conditional to designate if the customer is done
- * 			1. Yes
- * 				Terminate loop
- * 			2. No
- * 				Pass loop
+ *  Initialize current cashier action as {an integer equal to 0}
+ * 	Initialize customer counter for the day as {an integer equal to 0}
+ * 	Initialize array of customer names as strings
+ * 	Initialize array of account numbers as integers
+ * 	Initialize array of account balances as floating point numbers (floats)
+ * 	1st level while loop to measure what the cashier is doing
+ * 		2nd level conditional for analyzing cashier actions
+ * 			0. Handling customers
+ * 				Get the name of the customer as {customer names[customer counter]}
+ * 				Get account number of customer as {account numbers[customer counter]}
+ * 				3rd level while loop to analyze transactions
+ * 					4th level Conditional to designate what transaction is being done
+ * 						0. Deposit
+ * 							Add deposit amount to account balance
+ * 							Add transaction to the records
+ * 						1. Withdrawal
+ * 							Subtract withdrawal amount from account balance
+ * 							Add transaction to the records
+ * 				3rd Conditional to designate if the customer is done
+ * 					0. Yes
+ * 						Set customer counter to next value {+1}
+ * 						Terminate loop
+ * 					1. No
+ * 						Pass loop
+ * 			1. Checking records
+ * 				For every customer in range 0 --> current customer (last value - 1)
+ * 					Print(customer names[customer], "with account number", account numbers[customer])
+ * 					Print("has a balance of", account balances[customer])
+ * 	1st level conditional to check what the cashier is doing next
+ * 		0. Customer handling
+ * 			Set current cashier action as 0
+ * 			Pass loop 
+ * 		1. Checking records
+ * 			Set current cashier action as 1
+ * 			Pass loop
+ * 		2. Done for the day
+ * 			Print goodbye message
+ * 			Terminate loop
  */
 import java.util.Scanner;
 
