@@ -22,12 +22,14 @@ public class MP13
 	//For every character, check if it is to be capitalized based on it position relative to special characters
      	for (int i = 0; i < letters.length; i++) 
      	{
+		//If the character is the first letter in the array
 		if(i == 0)
 	 	{
 			//Capitzlizes letter
 			letters[i] = Character.toUpperCase(letters[i]); 
 		}
 
+		//If if the character is to be capitalized
 		else if (!CapArgs && Character.isLetter(letters[i])) 
 	     	{
 			//Capitalizes letter
@@ -36,6 +38,7 @@ public class MP13
 		     	CapArgs = true;
 	     	} 
 
+		//If the character is a space, period or newline
 	     	else if (Character.isWhitespace(letters[i]) || letters[i]=='.' || letters[i]=='\'') 
 	     	{ 
 			//Designates the next character to be capitalized
@@ -45,6 +48,9 @@ public class MP13
 
 	//Turns the array back into a string
      	String newline = String.valueOf(letters);
+	
+	//Close input stream to prevent data leakage
+	input.close();
 	
 	//Prints the new string
      	System.out.println(newline);
