@@ -1,34 +1,53 @@
 package mp.pkg14;
 
+//Import scanner module to be used for taking inputs
 import java.util.Scanner;
 
-public class MP14 {
-
+//Defines a new class under the package
+public class MP14 
+{
+    //Defines a new main function
     public static void main(String[] args) 
     {
+    	//Opens the input stream
     	Scanner input = new Scanner(System.in);
     
+    	//Defines two strings, one to take input and one to store output
     	String line, rev="";
     
+    	//Takes user input
     	System.out.println("Enter a word: ");
     	line = input.nextLine();
     
+    	//Converts input to array and gets the length of said array
     	char let[] = line.toCharArray();
     	System.out.println(line.length());
     
+    	//For ever character in the array, starting from the last character
     	for (int i = let.length-1; i>=0; i--)
     	{
+		//Write to string rev
     		rev = rev + let[i];
     	}
+	
+	//Closes input stream to prevent data leakage
+	input.close();
+	
+	//Print pretext
     	System.out.println(rev.getClass());
-		System.out.println("Reversed string is: ");
-		System.out.println(rev);
-		
-		if (line.equals(rev))
-		    System.out.println("It's a palindrome.");
-		
-		else
-		    System.out.println("It's not a palindrome.");
+	System.out.println("Reversed string is: ");
+	System.out.println(rev);
+	
+	//Print context
+	if (line.equals(rev))
+	{
+		System.out.println("It's a palindrome.");
 	}
+
+	else
+	{
+		System.out.println("It's not a palindrome.");
+	}
+    }
     
 }
