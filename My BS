@@ -51,61 +51,71 @@ import java.util.Scanner;
 
 public class MyBankingSystem {
 
-    public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
-    
-    //code initializations
-    String actname;
-    int balance[] = new int[50];
-    String custname[] = new String [50];
-    int num, i, ctr=0, custbal=0, withdrawal;
-    
-    //greetings and cashier name
-    System.out.println("Welcome to the MBS Banking System!");
-    System.out.print("Enter your nickname: ");
-    actname = input.nextLine();
-    
-    //this should repeat until I press '0'
-    do
-    {
-        System.out.print("\nWhat is the name of the customer? \n");
-        custname[ctr]=input.nextLine();
-        //i need to store names in an array so I can call them back in 'check records'
-        System.out.println("\nWhat do you want to do today?\n");
-        System.out.print("\t1 - Deposit Money\n\t2 - Withdraw\n\t3 - Check Records\n\t0 - Exit\n");
-        num=input.nextInt();
-        
-        if (num==1)//the deposit option
-        {
-            System.out.print("Enter amount to deposit: ");
-            balance[ctr]=input.nextInt();
-            custbal=balance[ctr];
-            System.out.println("Transaction done. ");
-            ctr++;
-        }
-        
-        //the withdraw option.for some reason this doesnt work
-        else if (num==2)
-        {
-            System.out.print("Enter amount to withdraw: ");
-            withdrawal=input.nextInt();
-            
-            for (i=1;i<ctr;i++)
-            {
-                balance[ctr]=custbal-withdrawal;
-            }
-            System.out.println("Remaining: "+balance[ctr]);
-        }
-        else if (num==3)//the check records option. I need to improve this
-        {
-            System.out.println("Records of"+custname[ctr]);
-            System.out.print("Balance: "+balance[ctr]);
-        }
-        else if (num==0)//the exit option
-        System.exit(0);
-    }
-    
-    while(num!=0);
-    }
-    
+    public static void main(String[] args) 
+	{
+		int CurrentCashierAction = 0, CustomerCounter = 0, CurrentTransaction;
+		float FunctionValue = 0;
+		int AccountNumber[] = new int[50];
+		float AccountBalance[] = new float[50];
+		String CustomerNames[] = new String[50]; 
+	    Scanner input = new Scanner(System.in);
+	    
+	    System.out.print("Enter your name: \n");
+	    String CashierName = input.nextLine();
+	    
+	    while (CurrentCashierAction < 2)
+	    {
+	    	if (CurrentCashierAction == 0)
+	    	{
+	    		 System.out.print("Enter customer name: \n");
+	    		 CustomerNames[CustomerCounter] = input.nextLine();
+	    		 
+	    		 System.out.print("Enter account number: \n");
+	    		 AccountNumber[CustomerCounter] = input.nextInt();
+	    		 
+	    		 System.out.print("What would the customer like to do?:\n\n");
+	    		 System.out.print("0. Deposit \n");
+	    		 System.out.print("1. Withdraw\n");
+	    		 System.out.print("2. Loan\n");
+	    		 CurrentTransaction = input.nextInt();
+	    		 
+	    		 	if (CurrentTransaction == 0)
+	    		 	{
+	    		 		System.out.print("How much money would you like to deposit\n");
+	    		 		FunctionValue = input.nextFloat();
+	    		 		AccountBalance[CustomerCounter] = AccountBalance[CustomerCounter] + FunctionValue;
+	    		 	}
+	    		 	
+	    		 	else if (CurrentTransaction == 1)
+	    		 	{
+	    		 		System.out.print("How much money would you like to deposit\n");
+	    		 		FunctionValue = input.nextFloat();
+	    		 		
+	    		 		if(AccountBalance[CustomerCounter] <= FunctionValue)
+	    		 		{
+	    		 			AccountBalance[CustomerCounter] = AccountBalance[CustomerCounter] - FunctionValue;
+	    		 		}
+	    		 		
+	    		 		else
+	    		 		{
+	    		 			System.out.print("Unable to complete desired withdrawal amount\n");
+	    		 		}
+	    		 	}
+	    		 	
+	    		 	else if (CurrentTransaction == 2)
+	    		 	{
+	    		 		System.out.print("How much money would you like to loan\n");
+	    		 		FunctionValue = input.nextFloat();
+	    		 		AccountBalance[CustomerCounter] = AccountBalance[CustomerCounter] - FunctionValue;
+	    		 	}
+	    	}
+	    	
+	    	else if (CurrentCashierAction == 1)
+	    	{
+	    		
+	    	}
+	    }
+	    
+	    input.close();
+	}
 }
