@@ -70,8 +70,9 @@ public class MyBankingSystem {
 	    {
 	    	if (CurrentCashierAction == 0)
 	    	{
-	    		do
+	    		while(TakingNewCustomers == 1)
 	    		{
+	    			CustomerIsDone = 1;
 	    			System.out.print("Enter customer name: \n");
 	    			CustomerNames[CustomerCounter] = input.nextLine();
 	    			
@@ -152,7 +153,6 @@ public class MyBankingSystem {
 	    		 		TakingNewCustomers = 0;
 	    		 	}
 	    		}
-	    		while(TakingNewCustomers == 1);
 	    	
 	    		 System.out.print("What would you like to do now?\n\n");
 	    		 System.out.print("0. Handle Next Customer \n");
@@ -166,8 +166,8 @@ public class MyBankingSystem {
 	    	{
 	    		for(int customer = 0; customer <= CustomerCounter; customer++)
 	    		{
-	    			System.out.print("Sir/Madame: " + CustomerNames[customer] + 
-	    					"With account number: " + AccountNumbers[customer] + "\n");
+	    			System.out.print("\nSir/Madame: " + CustomerNames[customer] + 
+	    					"\nWith account number: " + AccountNumbers[customer] + "\n");
 	    			
 	    			if(AccountBalances[customer] < 0)
 	    			{
@@ -185,7 +185,7 @@ public class MyBankingSystem {
 	    			}
 	    		}
 	    		
-	    		System.out.print("What would you like to do now?\n\n");
+	    		System.out.print("\nWhat would you like to do now?\n\n");
 	    		System.out.print("0. Handle Next Customer \n");
 	    		System.out.print("1. Check Transaction Records\n");
 	    		System.out.print("2. Clock out\n");
