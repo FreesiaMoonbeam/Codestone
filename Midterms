@@ -1,0 +1,42 @@
+char choice;
+        do{
+        
+        //Main Menu
+        System.out.print("\n\n\nWhat Would You like To Do?\n---------------------------------------------------\n\tA - Stack\n\tB - Queue \n\tC - Exit\n   \n------------------------------------- \n\nInput Choice: ");
+        choice = input.next().charAt(0); 
+        
+        //Secondary Menu
+        if (choice=='a'||choice=='A'){
+           
+           //Stack Menu
+           System.out.println("A. Push\nB. Pop\nC. Display");
+           int [] arr = new int [5];
+           int stackchoice = input.next().charAt(0);
+           if (stackchoice=='a'||stackchoice=='A'){
+               for (int ctr = 0;ctr<5;ctr++){
+                   System.out.println("Enter a number: ");
+                   int stackvalue = input.nextInt();
+                   stackvalue = arr[ctr];
+               }
+           }
+           else if (stackchoice=='b'||stackchoice=='B')
+           {
+               if (arr[0]==0)
+                   System.out.println("Enter a number: ");
+           }
+           else if (stackchoice=='c'||stackchoice=='C'){
+               for (int ctr = 0;ctr<arr.length;ctr++)
+                   System.out.println(arr[ctr]);
+           }
+        }
+    
+        else if (choice=='c'||choice=='C')
+            System.exit(0);
+        }
+        while (choice!='c');
+ 
+         
+         
+    }
+    
+}
