@@ -1,0 +1,89 @@
+
+package midtermexam;
+
+import java.util.Scanner;
+
+public class MidtermExam {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        //universal variables
+        char choice, stackchoice = 0, queuechoice;
+        int stackctr=0, stackpush=0, stackpop=0, queuectr=0, queue, dequeue;
+        int stackarray[] = new int [5];
+        int queuearray[] = new int [5];
+        
+        //start of do-while
+        do{
+        System.out.print("What Would You like To Do?\nA - Stack\nB - Queue\nC - Exit\n\nInput Choice: ");
+        choice = input.next().charAt(0);
+        
+        //stackmenu
+        if (choice=='a'||choice=='A'){
+            
+            do{
+            System.out.println("A. Push\nB. Pop\nC. Display");
+            stackchoice = input.next().charAt(0);
+            
+            if (stackchoice=='a'||stackchoice=='A'){
+               System.out.print("Enter number: ");
+               stackarray[stackctr] = input.nextInt();
+               stackpush = stackarray[stackctr];
+               stackctr++;
+            }
+            else if (stackchoice=='b'||stackchoice=='B'){
+                if (stackarray[stackctr-1]==0)
+                    System.out.println("Error: no value in stack.");
+                else{ //somehow reduces the whole array into nothing but zeroes
+                    stackpop = stackarray[stackctr-1];
+                    stackpop = stackpop-stackpop;
+                    stackarray[stackctr-1]=stackpop;
+                }
+            }
+            else if (stackchoice=='c'||stackchoice=='C'){
+                for (stackctr = 0;stackctr<stackarray.length;stackctr++)
+                   System.out.println(stackarray[stackctr]);
+                break;
+            }
+            }
+            while (stackchoice!='c'||stackchoice!='C');
+        }
+            
+        //queuemenu
+        else if (choice=='b'||choice=='B'){
+            
+            do{
+            System.out.println("A. Queue\nB. Dequeue\nC. Display");
+            queuechoice = input.next().charAt(0);
+            
+            if (queuechoice=='a'||queuechoice=='A'){
+                System.out.print("Enter number: ");
+               queuearray[queuectr] = input.nextInt();
+               queue = queuearray[queuectr];
+               queuectr++;
+            }
+            else if (queuechoice=='b'||queuechoice=='B'){
+                if (queuearray[0]==0)
+                    System.out.println("Error: no value in queue.");
+                else{ //it works but it doesn't move the values of the array
+                    queue = queuearray[0];
+                    queue = queue-queue;
+                    queuearray[0]=queue;
+                }
+            }
+            else if (queuechoice=='c'||queuechoice=='C'){
+            for (queuectr = 0;queuectr<queuearray.length;queuectr++)
+                   System.out.println(queuearray[queuectr]);
+            break;
+            }
+            }while(queuechoice!='c'||queuechoice!='C');
+        }
+    
+        else if (choice=='c'||choice=='C')
+            System.exit(0);
+        }
+        while (choice!='c');
+    }
+    
+}
