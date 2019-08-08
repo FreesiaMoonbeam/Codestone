@@ -1,0 +1,103 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package midtermexam;
+
+import java.util.Scanner;
+
+public class MidtermExam {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        //universal variables
+        char choice, stackchoice, queuechoice, exitchoice;
+        int stackctr=0, stackpush=0, stackpop=0, queuectr=0, queue, dequeue;
+        int stackarray[] = new int [100];
+        int queuearray[] = new int [100];
+        
+        //start of do-while
+        do{
+        System.out.print("What would you like to do?\nA - Stack\nB - Queue\nC - Exit\n\nInput Choice: ");
+        choice = input.next().charAt(0);
+        
+        //stackmenu
+        if (choice=='a'||choice=='A'){
+            
+            do{
+            System.out.print("\nA. Push\nB. Pop\nC. Display\n\nInput Choice: ");
+            stackchoice = input.next().charAt(0);
+            
+            if (stackchoice=='a'||stackchoice=='A'){
+               System.out.print("Enter number: ");
+               stackarray[stackctr] = input.nextInt();              
+            }
+            else if (stackchoice=='b'||stackchoice=='B'){
+                if (stackarray[stackctr-1+stackpush]==0)
+                    System.out.println("Error: no value in stack.");
+                
+                else{
+                    stackpop = stackarray[stackctr-1+stackpush];
+                    stackpop = stackpop-stackpop;
+                    stackarray[stackctr-1+stackpush]=stackpop;
+                }
+                stackpush++;
+            }
+            else if (stackchoice=='c'||stackchoice=='C'){
+                for (stackctr = 0;stackctr<stackarray.length;stackctr++){
+                    if (stackarray[stackctr]!=0)
+                       System.out.println(stackarray[stackctr]);
+                    }
+//                System.out.println("Do you wish to exit the stack menu? (y/n)");
+//                exitchoice = input.next().charAt(0);
+//                if (exitchoice == 'y'|| exitchoice == 'Y')
+//                    break;
+            }
+            stackctr++;
+            }
+            while (stackchoice!='c'||stackchoice!='C');
+        }
+            
+        //queuemenu
+        else if (choice=='b'||choice=='B'){
+            
+            do{
+            System.out.println("\nA. Queue\nB. Dequeue\nC. Display");
+            queuechoice = input.next().charAt(0);
+            
+            if (queuechoice=='a'||queuechoice=='A'){
+                System.out.print("Enter number: ");
+               queuearray[queuectr] = input.nextInt();
+               queue = queuearray[queuectr];
+            }
+            else if (queuechoice=='b'||queuechoice=='B'){
+                if (queuearray[0]==0)
+                    System.out.println("Error: no value in queue.");
+                else{
+                    queue = queuearray[0];
+                    queue = queue-queue;
+                    queuearray[0]=queue;
+                }
+            }
+            else if (queuechoice=='c'||queuechoice=='C'){
+                for (queuectr = 0;queuectr<queuearray.length;queuectr++){
+                    if (queuearray[queuectr]!=0)
+                       System.out.println(queuearray[queuectr]);
+                    }
+                System.out.println("Do you wish to exit the stack menu? (y/n)");
+                exitchoice = input.next().charAt(0);
+                if (exitchoice == 'y'|| exitchoice == 'Y')
+                    break;
+            }
+            queuectr++;
+            }while(queuechoice!='c'||queuechoice!='C');
+        }
+        else if (choice=='c'||choice=='C')
+            System.exit(0);
+        }
+        while (choice!='c'|| choice=='C');
+    }
+    
+}
