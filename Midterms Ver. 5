@@ -1,0 +1,178 @@
+import java.util.Scanner;
+
+public class MidtermExam
+{
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+
+        //universal variables
+        char choice, stackchoice, queuechoice, exitchoice;
+        int stackctr = 0, QueueSize = 0, QueueIn = 0, QueueOut = 0;
+
+        //start of main loop
+        do
+            {
+            System.out.print("What would you like to do?\nA - Stack\nB - Queue\nC - Exit\n\nInput Choice: ");
+            choice = input.next().charAt(0);
+
+            //Stackmenu
+            if (choice == 'a' || choice == 'A')
+            {
+                //Creates a stack based on user input by making the user input the initialization param
+                System.out.print("How big will the stack be?\n");
+                int[] stackarray = new int[input.nextInt()];
+
+                //Begin stack manipulation loop
+                do
+                {
+                    System.out.print("\nA. Push\nB. Pop\nC. Display\nD. Done with Stack\n\nInput Choice: ");
+                    stackchoice = input.next().charAt(0);
+
+                    //Push to stack
+                    if (stackchoice == 'a' || stackchoice == 'A')
+                    {
+                        if(stackctr >= stackarray.length)
+                            System.out.println("Error: Stack is full.");
+
+                        else
+                        {
+                            //Set value at current position of stack
+                            System.out.print("Enter number: ");
+                            stackarray[stackctr] = input.nextInt();
+
+                            System.out.println("Pushed " + stackarray[stackctr] + " to stack.");
+
+                            //Increase numbers known to be in stack
+                            stackctr++;
+                        }
+                    }
+
+                    //Pop from stack
+                    //Takes the last number entered, mirroring the LIFO nature of a stack
+                    else if (stackchoice == 'b' || stackchoice == 'B')
+                    {
+                        if (stackctr == 0)
+                            System.out.println("Error: no value in stack.");
+
+                        else
+                        {
+                            System.out.println("Popped " + stackarray[stackctr] + " from stack.");
+
+                            //Decrease numbers known to be in stack
+                            stackctr--;
+
+                            //Reset value at current position to nothing
+                            stackarray[stackctr] = 0;
+                        }
+                    }
+
+                    //Display the stack
+                    else if (stackchoice == 'c' || stackchoice == 'C')
+                    {
+                        //Check first if the stack has anything in it
+                        if(stackctr <= 0)
+                            System.out.println("Error: Stack is empty.");
+
+                        //Display all known numbers in the stack from the last number entered
+                        else
+                        {
+                            System.out.println("Stack contains:");
+                            System.out.print("[ ");
+                            for (int ctr = stackctr - 1; ctr >= 0; ctr--)
+                                System.out.printf("%d ", stackarray[ctr]);
+                            System.out.print("]");
+                        }
+                    }
+
+                } while (stackchoice != 'd' && stackchoice != 'D');
+            }
+
+            //Queuemenu
+            else if (choice=='b'||choice=='B')
+            {
+                //Creates a queue based on user input by making the user input the initialization param
+                System.out.print("How big will the queue be?\n");
+                int[] queuearray = new int[input.nextInt()];
+
+                for (int element : queuearray)
+                    element = -999; /*Sentinel value, this means that -999's will
+                                    not be included when displaying the loop*/
+
+                //Queue manipulation loop
+                do
+                {
+                    System.out.println("\nA. Queue\nB. Dequeue\nC. Display\nD. Done with Queue\n\nInput Choice: ");
+                    queuechoice = input.next().charAt(0);
+
+                    //Enqueue
+                    if (queuechoice == 'a' || queuechoice == 'A')
+                    {
+                        if(QueueSize < queuearray.length)
+                        {
+                            System.out.print("Enter number: ");
+                            queuearray[QueueIn] = input.nextInt();
+
+                            System.out.println("Enqueued " + queuearray[QueueIn] + " to queue.");
+                            QueueIn++;
+                            QueueSize++;
+                        }
+
+                        else
+                            System.out.println("Queue is full");
+
+                        if(QueueIn == queuearray.length)
+                            QueueIn = 0; /*Resets queue position to start*/
+                    }
+
+                    //Dequeue
+                    else if (queuechoice == 'b' || queuechoice == 'B')
+                    {
+                        if (QueueSize <= 0)
+                            System.out.println("Error: no value in queue.");
+
+                        else
+                        {
+                            System.out.println("Dequeued " + queuearray[QueueOut] + " from queue.");
+                            queuearray[QueueOut] = -999;
+                            QueueOut++;
+                            QueueSize--;
+                        }
+
+                        if(QueueOut == queuearray.length)
+                            QueueOut = 0; /*Resets queue position to start*/
+                    }
+
+                    //Display
+                    else if (queuechoice == 'c' || queuechoice == 'C')
+                    {
+                        if(QueueSize > 0)
+                        {
+                            int[] finalQueue = new int[QueueSize];
+                            int Subctr = 0;
+                            int Mainctr;
+                            for(Mainctr = 0; Mainctr < queuearray.length; Mainctr++)
+                            {
+                                if(queuearray[Mainctr] != -999)
+                                {
+                                    finalQueue[Subctr] = queuearray[Mainctr];
+                                    Subctr++;
+                                }
+                            }
+
+                            System.out.println("Queue contains: ");
+                            System.out.print("[ ");
+                            for (int element : finalQueue)
+                                System.out.printf("%d ", element);
+                            System.out.print("]");
+                        }
+
+                        else
+                            System.out.println("Error: Queue is empty.");
+                    }
+                }while(queuechoice != 'd' && queuechoice != 'D');
+            }
+        } while (choice != 'c' && choice != 'C');
+        System.exit(0);
+    }
+}
